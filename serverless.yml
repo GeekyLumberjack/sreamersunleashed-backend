@@ -45,6 +45,8 @@ functions:
           path: test
           method: get
           cors: true
+          Auth:
+            ApiKeyRequired: false
          
 
 
