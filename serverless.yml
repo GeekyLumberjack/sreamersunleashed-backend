@@ -50,17 +50,6 @@ functions:
 
 resources: # CloudFormation template syntax
   - ${file(resources/api-gateway-errors.yml)}
-    customerTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: customerTable
-        AttributeDefinitions:
-          - AttributeName: walletAddress
-            AttributeType: S
-        KeySchema:
-          - AttributeName: walletAddress
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+  - ${file(resources/dynamodb.yml)}
+  
     
