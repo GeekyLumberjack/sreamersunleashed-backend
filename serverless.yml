@@ -38,6 +38,13 @@ functions:
           path: profile
           method: post
           cors: true
+  test:
+    handler: test.main
+    events:
+      - http:
+          path: test
+          method: get
+          cors: true
          
 
 
