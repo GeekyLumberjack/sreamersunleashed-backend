@@ -1,0 +1,67 @@
+service: streamersunleashed-api
+provider: 
+  name: aws
+  region: us-east-2
+  
+      
+package:
+  individually: true
+
+
+iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: 
+        - "arn:aws:dynamodb:us-east-2:*:*"
+
+
+functions:
+  streamlabsAccess:
+    handler: handler.streamlabsAccess
+    events:
+      - http:
+          path: streamlabsAccess
+          method: post
+          cors: true
+          
+  profile:
+    handler: handler.profile
+    events:
+      - http:
+          path: profile
+          method: post
+          cors: true
+         
+
+
+resources: # CloudFormation template syntax
+  Resources:
+    customerTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: customerTable
+        AttributeDefinitions:
+          - AttributeName: walletAddress
+            AttributeType: S
+        KeySchema:
+          - AttributeName: walletAddress
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
