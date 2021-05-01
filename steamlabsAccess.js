@@ -10,11 +10,9 @@ export const main = handler( async (event, context) => {
   try {
     const result = await dynamoDbLib.put(params); // Return the matching list of items in response body
 
-    return success(result.Items);
+    return result.Items;
   } catch (e) {
     console.log(e);
-    return failure({
-      status: false
-    });
+    return { status: false };
   }
 });
