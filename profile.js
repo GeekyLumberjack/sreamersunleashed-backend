@@ -10,7 +10,7 @@ export const main = handler(async (event, context) => {
   };
 
   try {
-    const result = await dynamoDbLib.call("get", params); // Return the matching list of items in response body
+    const result = await dynamoDbLib.get(params); // Return the matching list of items in response body
 
     return success(result.Items);
   } catch (e) {
@@ -18,7 +18,7 @@ export const main = handler(async (event, context) => {
 
     try{
         params['ConditionExpression'] = 'attribute_exists(code)'
-        const hasCode = await dynamoDbLib.call("put", params);
+        const hasCode = await dynamoDbLib.put(params);
         return success({
             status:true
             });
