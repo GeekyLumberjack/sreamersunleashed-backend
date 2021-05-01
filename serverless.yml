@@ -50,7 +50,6 @@ functions:
 
 resources: # CloudFormation template syntax
   - ${file(resources/api-gateway-errors.yml)}
-  Resources:
     customerTable:
       Type: AWS::DynamoDB::Table
       Properties:
