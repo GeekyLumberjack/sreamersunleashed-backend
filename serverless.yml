@@ -24,7 +24,7 @@ iamRoleStatements:
 
 functions:
   streamlabsAccess:
-    handler: handler.streamlabsAccess
+    handler: streamlabsAccess.main
     events:
       - http:
           path: streamlabsAccess
@@ -32,7 +32,7 @@ functions:
           cors: true
           
   profile:
-    handler: handler.profile
+    handler: profile.main
     events:
       - http:
           path: profile
