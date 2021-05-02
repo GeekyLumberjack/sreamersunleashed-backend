@@ -17,9 +17,9 @@ export const main = handler(async (event, context) => {
     console.log(e);
 
     try{
-        params['ConditionExpression'] = 'attribute_exists(code)'
+        params['ConditionExpression'] = 'attribute_exists(code)';
         const hasCode = await dynamoDbLib.put(params);
-        return { status:true };
+        return { status:true, hasCode:hasCode};
 
 
     }
