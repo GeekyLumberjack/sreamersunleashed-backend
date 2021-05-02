@@ -1,5 +1,5 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
-import { success, failure } from "./libs/response-lib";
+
 import handler from "./libs/handler-lib";
 
 export const main = handler(async (event, context) => {
@@ -24,10 +24,9 @@ export const main = handler(async (event, context) => {
 
     }
     catch(er){
-
+        console.log(er);
         return { status: false };
 
     }
-    return { status: false };
   }
 });
