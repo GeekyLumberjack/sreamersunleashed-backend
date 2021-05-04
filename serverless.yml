@@ -32,6 +32,8 @@ functions:
           path: streamlabsAccess
           method: post
           cors: true
+          Auth:
+            ApiKeyRequired: false
           
   profile:
     handler: profile.main
@@ -40,7 +42,8 @@ functions:
           path: profile
           method: post
           cors: true
-         
+          Auth:
+            ApiKeyRequired: false
 
 
 resources: # CloudFormation template syntax
