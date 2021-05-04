@@ -1,4 +1,4 @@
-import * as dynamoDbLib from "./libs/dynamodb-lib";
+import dynamoDb from "./libs/dynamodb-lib";
 
 import handler from "./libs/handler-lib";
 
@@ -10,7 +10,7 @@ export const main = handler(async (event, context) => {
   };
 
   try {
-    const result = await dynamoDbLib.get(params); // Return the matching list of items in response body
+    const result = await dynamoDb.get(params); // Return the matching list of items in response body
 
     return result.Items;
   } catch (e) {
@@ -18,7 +18,7 @@ export const main = handler(async (event, context) => {
 
     try{
         params['ConditionExpression'] = 'attribute_exists(code)';
-        const hasCode = await dynamoDbLib.put(params);
+        const hasCode = await dynamoDb.put(params);
         return { status:true, hasCode:hasCode};
 
 

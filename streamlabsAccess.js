@@ -1,4 +1,4 @@
-import * as dynamoDbLib from "./libs/dynamodb-lib";
+import dynamoDb from "./libs/dynamodb-lib";
 import handler from "./libs/handler-lib";
 
 export const main = handler( async (event, context) => {
@@ -8,7 +8,7 @@ export const main = handler( async (event, context) => {
   };
 
   try {
-    const result = await dynamoDbLib.put(params); // Return the matching list of items in response body
+    const result = await dynamoDb.put(params); // Return the matching list of items in response body
 
     return result.Items;
   } catch (e) {
