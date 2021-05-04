@@ -5,7 +5,7 @@ import handler from "./libs/handler-lib";
 export const main = handler(async (event, context) => {
   const data = JSON.parse(event.body);
   var params ={TableName: `customerTable`,
-    Item:{walletAddress:data.address},
+    Key:{walletAddress:{"S":456}},
     ConditionExpression: 'attribute_not_exists(walletAddress)'
   };
 
