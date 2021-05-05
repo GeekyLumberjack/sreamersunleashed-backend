@@ -8,7 +8,7 @@ export const main = handler(async (event, context) => {
     Item: {
       "walletAddress":data.walletAddress.props
     },
-    ConditionExpression: 'attribute_exists(walletAddress)',
+    ConditionExpression: 'attribute_not_exists(walletAddress)',
   };
 
   try {
