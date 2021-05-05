@@ -14,7 +14,7 @@ export const main = handler(async (event, context) => {
   try {
     const result = await dynamoDb.put(params); // Return the matching list of items in response body
 
-    return result.Items;
+    return {code: false};
   } catch (e) {
     console.log(e);
 
@@ -22,13 +22,13 @@ export const main = handler(async (event, context) => {
 
         params['ConditionExpression'] = 'attribute_exists(code)';
         const hasCode = await dynamoDb.query(params);
-        return { status:true, hasCode:hasCode};
+        return { code:true};
 
 
     }
     catch(er){
         console.log(er);
-        return { status: false };
+        return { code: false };
 
     }
   }
