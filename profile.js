@@ -20,10 +20,10 @@ export const main = handler(async (event, context) => {
         try{
           params = {
             TableName: `customerTable`,
-            KeyConditionExpression: "walletAddress = :wa"
+            KeyConditionExpression: "walletAddress = :wa",
             ExpressionAttributeValues:{
               ":wa" : data.walletAddress.props
-            }
+            },
             ConditionExpression: 'attribute_exists(code)'
 
           };
