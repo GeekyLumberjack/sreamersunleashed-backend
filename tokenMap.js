@@ -4,10 +4,11 @@ import handler from "./libs/handler-lib";
 export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
   var params = {
+    Key:{
+      "walletAddress":data.walletAddress
+    },
     TableName: `customerTable`,
-    KeyConditionExpression: "walletAddress = :wa",
     ExpressionAttributeValues:{
-      ":wa" : data.walletAddress,
       ":t1" : data.tokenMap
     },
     UpdateExpression:"set TokenMap = :t1"
