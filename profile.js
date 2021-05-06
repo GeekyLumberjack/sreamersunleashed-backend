@@ -17,8 +17,6 @@ export const main = handler(async (event, context) => {
     return {code: false, result:result};
   } catch (e) {
     console.log(e);
-
-   
       if(e.code === 'ConditionalCheckFailedException'){
         try{
           params['ConditionExpression'] = 'attribute_exists(code)';
@@ -26,12 +24,10 @@ export const main = handler(async (event, context) => {
           return { code:true, hasCode:hasCode};
         }
         catch(er){
-          return {code:false}
+          return {code:false};
         }
       }
       console.log(e);
       return { code: false };
-
-    
   }
 });
