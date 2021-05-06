@@ -19,8 +19,17 @@ export const main = handler(async (event, context) => {
     console.log(e);
       if(e.code === 'ConditionalCheckFailedException'){
         try{
-          params['ConditionExpression'] = 'attribute_exists(code)';
-          const hasCode = await dynamoDb.query(params);
+          params = {
+            TableName: `customerTable`,
+            Key:{
+              walletAddress: {
+                "S": data.walletAddress.props
+              }
+            },
+            ProjectionExpression:"code"
+
+          }
+          const hasCode = await dynamoDb.get(params);
           return { code:true, hasCode:hasCode};
         }
         catch(er){
