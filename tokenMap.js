@@ -10,7 +10,7 @@ export const main = handler( async (event, context) => {
   };
 
   try {
-    const result = await dynamoDb.put(params); // Return the matching list of items in response body
+    const result = await dynamoDb.update(params); // Return the matching list of items in response body
     return {TokenMap: true, result:result};
   } catch (e) {
     console.log(e);
