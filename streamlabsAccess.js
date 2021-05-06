@@ -11,7 +11,6 @@ export const main = handler( async (event, context) => {
       }
     },
     ExpressionAttributeValues:{
-      ":wa" : data.walletAddress,
       ":c1" : data.code
     },
     UpdateExpression:"set code = :c1"
