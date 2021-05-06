@@ -5,7 +5,8 @@ export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
   var params ={TableName: `customerTable`,
     Item:{walletAddress:data.walletAddress,
-      code:data.code}
+      code:data.code},
+      ConditionExpression: 'attribute_not_exists(walletAddress)',
   };
 
   try {
