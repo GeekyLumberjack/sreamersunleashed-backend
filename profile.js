@@ -24,10 +24,10 @@ export const main = handler(async (event, context) => {
             ExpressionAttributeValues:{
               ":wa" : data.walletAddress.props
             },
-            ConditionExpression: 'attribute_exists(code)'
+            ProjectionExpression:"code"
 
           };
-          const hasCode = await dynamoDb.query(params);
+          const hasCode = await dynamoDb.get(params);
           return { code:true, hasCode:hasCode};
         }
         catch(er){
