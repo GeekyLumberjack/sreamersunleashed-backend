@@ -44,6 +44,16 @@ functions:
           cors: true
           Auth:
             ApiKeyRequired: false
+    
+  tokenMap:
+    handler: tokenMap.main
+    events:
+      - http:
+          path: tokenMap
+          method: post
+          cors: true
+          Auth:
+            ApiKeyRequired: false
 
 
 resources: # CloudFormation template syntax
