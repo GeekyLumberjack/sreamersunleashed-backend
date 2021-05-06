@@ -36,7 +36,7 @@ export const main = handler(async (event, context) => {
           return {code:false};
         }
       }
-      console.log(e);
+      console.log(er);
       return { code: false };
   }
 });
