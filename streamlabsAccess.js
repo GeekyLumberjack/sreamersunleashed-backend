@@ -5,7 +5,11 @@ export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
   var params = {
     TableName: `customerTable`,
-    KeyConditionExpression: "walletAddress = :wa",
+    Key:{
+      "walletAddress":{
+        "S":data.walletAddress
+      }
+    },
     ExpressionAttributeValues:{
       ":wa" : data.walletAddress,
       ":c1" : data.code
