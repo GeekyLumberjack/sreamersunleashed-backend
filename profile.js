@@ -18,18 +18,20 @@ export const main = handler(async (event, context) => {
   } catch (e) {
     console.log(e);
 
-    try{
+   
+      if(e.code === 'ConditionalCheckFailedException'){
+        try{
+          params['ConditionExpression'] = 'attribute_exists(code)';
+          const hasCode = await dynamoDb.query(params);
+          return { code:true, hasCode:hasCode};
+        }
+        catch(er){
+          return {code:false}
+        }
+      }
+      console.log(e);
+      return { code: false };
 
-        params['ConditionExpression'] = 'attribute_exists(code)';
-        const hasCode = await dynamoDb.query(params);
-        return { code:true, hasCode:hasCode};
-
-
-    }
-    catch(er){
-        console.log(er);
-        return { code: false };
-
-    }
+    
   }
 });

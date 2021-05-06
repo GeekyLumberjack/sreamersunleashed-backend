@@ -12,9 +12,12 @@ export const main = handler( async (event, context) => {
   try {
     const result = await dynamoDb.put(params); // Return the matching list of items in response body
 
-    return result.Items;
+    return {code: true};
   } catch (e) {
+    if(e.code === 'ConditionalCheckFailedException'){
+      return{ code: true}
+    }
     console.log(e);
-    return { status: false };
+    return { code: false };
   }
 });
