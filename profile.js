@@ -20,15 +20,14 @@ export const main = handler(async (event, context) => {
         try{
           params = {
             TableName: `customerTable`,
-            Key:{
-              walletAddress: {
-                "S": data.walletAddress.props
-              }
-            },
-            ProjectionExpression:"code"
+            KeyConditionExpression: "walletAddress = :wa"
+            ExpressionAttributeValues:{
+              ":wa" : data.walletAddress.props
+            }
+            ConditionExpression: 'attribute_exists(code)'
 
           };
-          const hasCode = await dynamoDb.get(params);
+          const hasCode = await dynamoDb.query(params);
           return { code:true, hasCode:hasCode};
         }
         catch(er){
