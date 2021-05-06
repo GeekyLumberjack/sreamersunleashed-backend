@@ -6,9 +6,7 @@ export const main = handler( async (event, context) => {
   var params = {
     TableName: `customerTable`,
     Key:{
-      "walletAddress":{
-        "S":data.walletAddress
-      }
+      "walletAddress":data.walletAddress
     },
     ExpressionAttributeValues:{
       ":c1" : data.code
