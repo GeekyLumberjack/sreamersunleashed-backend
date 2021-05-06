@@ -3,10 +3,15 @@ import handler from "./libs/handler-lib";
 
 export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
-  var params ={TableName: `customerTable`,
-    Item:{walletAddress:data.walletAddress,
-      TokenMap:data.tokenMap},
-      ConditionExpression: 'attribute_exists(walletAddress)',
+  var params = {
+    TableName: `customerTable`,
+    KeyConditionExpression: "walletAddress = :wa",
+    ExpressionAttributeValues:{
+      ":wa" : data.walletAddress,
+      ":t1" : data.tokenMap
+    },
+    UpdateExpression:"set TokenMap = :t1"
+
   };
 
   try {
