@@ -16,7 +16,7 @@ export const main = handler(async (event, context) => {
 
     return {code: false, result:result};
   } catch (e) {
-    console.log(e);
+    
       if(e.code === 'ConditionalCheckFailedException'){
         try{
           params = {
@@ -33,10 +33,11 @@ export const main = handler(async (event, context) => {
           return { code:true, hasCode:hasCode};
         }
         catch(er){
+          console.log(er);
           return {code:false};
         }
       }
-      console.log(er);
+      console.log(e);
       return { code: false };
   }
 });
