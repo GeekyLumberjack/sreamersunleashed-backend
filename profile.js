@@ -28,7 +28,7 @@ export const main = handler(async (event, context) => {
             },
             ProjectionExpression:"code"
 
-          }
+          };
           const hasCode = await dynamoDb.get(params);
           return { code:true, hasCode:hasCode};
         }
