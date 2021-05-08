@@ -1,12 +1,12 @@
-import dynamoDb from "./libs/dynamodb-lib";
+import dynamoDb from "../libs/dynamodb-lib";
 
-import handler from "./libs/handler-lib";
+import handler from "../libs/handler-lib";
 
 export const main = handler(async (event, context) => {
   const data = JSON.parse(event.body);
   var params ={TableName: `customerTable`,
     Item: {
-      "walletAddress":data.walletAddress.props
+      "walletAddress":data.walletAddress
     },
     ConditionExpression: 'attribute_not_exists(walletAddress)',
   };
@@ -22,7 +22,7 @@ export const main = handler(async (event, context) => {
             TableName: `customerTable`,
             KeyConditionExpression: "walletAddress = :wa",
             ExpressionAttributeValues:{
-              ":wa" : data.walletAddress.props
+              ":wa" : data.walletAddress
             },
             ProjectionExpression:"code"
 
