@@ -20,6 +20,9 @@ export const main = handler(async (event, context) => {
         try{
           params = {
             TableName: `customerTable`,
+            Key:{
+              "walletAddress":data.walletAddress
+            },
             KeyConditionExpression: "walletAddress = :wa",
             ExpressionAttributeValues:{
               ":wa" : data.walletAddress
