@@ -11,7 +11,7 @@ export const main = handler( async (event, context) => {
     ExpressionAttributeValues:{
       ":t1" : data.tokenMap
     },
-    UpdateExpression:"set TokenMap = :t1"
+    UpdateExpression:"set tokenMap = :t1"
 
   };
 
