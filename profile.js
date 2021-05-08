@@ -27,7 +27,7 @@ export const main = handler(async (event, context) => {
             ExpressionAttributeValues:{
               ":wa" : data.walletAddress
             },
-            ProjectionExpression:"code"
+            ProjectionExpression:"code,tokenMap"
 
           };
           const hasCode = await dynamoDb.get(params);
