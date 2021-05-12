@@ -3,7 +3,7 @@ import handler from "./libs/handler-lib";
 
 export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
-  params = {
+  var params = {
     TableName: `customerTable`,
     Key:{
       "walletAddress":data.walletAddress
@@ -17,10 +17,12 @@ export const main = handler( async (event, context) => {
   };
   try{
     const hasCode = await dynamoDb.get(params);
-    const options = {mehtod:'POST'}
-    const url = 'https://streamlabs.com/api/v1.0/donations?name='+data.name+'&identifier='+data.walletAddress+'&amount='+data.amount+'&currency='+data.currency+'&access_token'+hasCode.Item.code
-    const donate = fetch(url, options)
-          .then(res => console.log(res.json()))
+    let xhr = new XMLHttpRequest();
+    xhr.open('post','https://streamlabs.com/api/v1.0/donations?name='+data.name+'&identifier='+data.walletAddress+'&amount='+data.amount+'&currency='+data.currency+'&access_token'+hasCode.Item.code);
+    xhr.send();
+    xhr.onload = function() {
+      console.log(xhr.response)
+    }
     return ({Donation: true})      
     
   } catch (e) {
