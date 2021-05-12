@@ -6,9 +6,11 @@ async function sendDonation(data, hasCode) {
       await axios.post('https://streamlabs.com/api/v1.0/donations?name='+data.name+'&identifier='+data.walletAddress+'&amount='+data.amount+'&currency='+data.currency+'&access_token'+hasCode.Item.code)
       .then(function(response){
         console.log(response);
+        return(response);
       })
       .catch(function (error) {
         console.log(error);
+        return(error);
       });
     }
 
@@ -28,8 +30,8 @@ export const main = handler( async (event, context) => {
   };
   try{
     const hasCode = await dynamoDb.get(params);
-    sendDonation(data, hasCode);
-    return ({Donation: true});
+    const sendIt = await sendDonation(data, hasCode);
+    return ({Donation: true, Response: sendIt});
   } catch (e) {
     console.log(e);
     return { Donation: false };
