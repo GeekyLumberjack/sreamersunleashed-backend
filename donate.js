@@ -1,17 +1,18 @@
 import dynamoDb from "./libs/dynamodb-lib";
 import handler from "./libs/handler-lib";
 
-async function sendDonation(data, hasCode) { 
+async function sendDonation(data, hasCode) {
+      var axios = require("axios");
       await axios.post('https://streamlabs.com/api/v1.0/donations?name='+data.name+'&identifier='+data.walletAddress+'&amount='+data.amount+'&currency='+data.currency+'&access_token'+hasCode.Item.code)
       .then(function(response){
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
-      });}
+      });
+    }
 
 export const main = handler( async (event, context) => {
-  var axios = require("axios");
   const data = JSON.parse(event.body);
   var params = {
     TableName: `customerTable`,
