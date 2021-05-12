@@ -21,7 +21,9 @@ export const main = handler( async (event, context) => {
     axios.post('https://streamlabs.com/api/v1.0/donations?name='+data.name+'&identifier='+data.walletAddress+'&amount='+data.amount+'&currency='+data.currency+'&access_token'+hasCode.Item.code)
       .then(function(response){
         console.log(response);
-      });
+      })
+      .catch(function (error) {
+        console.log(error)});
     return ({Donation: true});
   } catch (e) {
     console.log(e);
