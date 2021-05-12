@@ -22,10 +22,9 @@ export const main = handler( async (event, context) => {
     xhr.open('post','https://streamlabs.com/api/v1.0/donations?name='+data.name+'&identifier='+data.walletAddress+'&amount='+data.amount+'&currency='+data.currency+'&access_token'+hasCode.Item.code);
     xhr.send();
     xhr.onload = function() {
-      console.log(xhr.response)
-    }
-    return ({Donation: true})      
-    
+      console.log(xhr.response);
+    };
+    return ({Donation: true});
   } catch (e) {
     console.log(e);
     return { Donation: false };
