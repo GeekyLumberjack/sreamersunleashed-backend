@@ -54,7 +54,15 @@ functions:
           cors: true
           Auth:
             ApiKeyRequired: false
-
+  donate:
+    handler: donate.main
+    events:
+      - http:
+          path: donate
+          method: post
+          cors: true
+          Auth:
+            ApiKeyRequired: false
 
 
 resources: # CloudFormation template syntax
