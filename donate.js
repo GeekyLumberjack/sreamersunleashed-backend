@@ -2,6 +2,7 @@ import dynamoDb from "./libs/dynamodb-lib";
 import handler from "./libs/handler-lib";
 
 export const main = handler( async (event, context) => {
+  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
   const data = JSON.parse(event.body);
   var params = {
     TableName: `customerTable`,
