@@ -23,7 +23,8 @@ export const main = handler( async (event, context) => {
         console.log(response);
       })
       .catch(function (error) {
-        console.log(error)});
+        console.log(error);
+      });
     return ({Donation: true});
   } catch (e) {
     console.log(e);
