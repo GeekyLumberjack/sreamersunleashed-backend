@@ -27,11 +27,15 @@ export const main = handler(async (event, context) => {
             ExpressionAttributeValues:{
               ":wa" : data.walletAddress
             },
-            ProjectionExpression:"code,tokenMap"
+            ProjectionExpression:"access_token,tokenMap"
 
           };
           const hasCode = await dynamoDb.get(params);
-          return { code:true, hasCode:hasCode};
+          if(hasCode.Item.access_token){
+            return { code:true, hasCode:hasCode};
+          }else{
+            return { code:false, hasCode:hasCode};
+          }
         }
         catch(er){
           console.log(er);
