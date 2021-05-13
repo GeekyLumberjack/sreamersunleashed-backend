@@ -7,7 +7,6 @@ async function getAccessToken(code) {
   var region = "us-east-2";
   var secretName = "client_secret";
   var secret;
-   
   var client = new AWS.SecretsManager({
     region: region
   });
