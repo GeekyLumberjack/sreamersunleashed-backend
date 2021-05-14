@@ -17,6 +17,7 @@ async function getAccessToken(code) {
   return{body:JSON.stringify(res)};
   }
   catch(e){
+    console.log(e);
     return{body:e};
   }
 }
