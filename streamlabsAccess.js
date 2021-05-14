@@ -14,7 +14,7 @@ async function getAccessToken(code) {
   const secret = await clientSecretPromise;
   const res = await axios.post('https://streamlabs.com/api/v1.0/token',{"grant_type":"authorization_code","client_id":"OTgPYBs7dsnSJN6yph3HlYDpjCyEx4q5lXyLskds","client_secret":secret.Parameter.Value,'redirect_uri':"https://streamersunleashed.com","code":code});
   console.log(res);
-  return{body:JSON.stringify(res)};
+  return{body:res.data};
   }
   catch(e){
     console.log(e);
