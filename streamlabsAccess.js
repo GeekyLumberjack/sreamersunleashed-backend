@@ -33,9 +33,9 @@ export const main = handler( async (event, context) => {
       "walletAddress":data.walletAddress
     },
     ExpressionAttributeValues:{
-      ":c1" : access.access_token,
-      ":c2": access.token_type,
-      ":c3": access.refresh_token
+      ":c1" : access.body.access_token,
+      ":c2": access.body.token_type,
+      ":c3": access.body.refresh_token
     },
     UpdateExpression:"set access_token = :c1, token_type = :c2, refresh_token = :c3"
   };
