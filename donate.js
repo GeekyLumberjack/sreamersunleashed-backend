@@ -20,7 +20,7 @@ export const main = handler( async (event, context) => {
 
   };
   try{
-    const hasCode = await dynamoDb.get(params);
+    const hasCode = await dynamoDb.scan(params);
     const sendIt = await sendDonation(data, hasCode);
     return ({Donation: true, Response: sendIt});
   } catch (e) {
