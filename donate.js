@@ -12,7 +12,7 @@ export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
   var params = {
     TableName: `customerTable`,
-    KeyConditionExpression: "walletAddress = :wa",
+    FilterExpression: "contains(tokenMap,:wa)",
     ExpressionAttributeValues:{
       ":wa" : {"S": data.token}
     },
