@@ -5,7 +5,7 @@ async function sendDonation(data, hasCode) {
       var axios = require("axios");
       const res = await axios.post('https://streamlabs.com/api/v1.0/donations',{'name':data.name,'identifier':data.name,'amount':data.amount,'currency':data.currency,'access_token':hasCode.Item.access_token});
       console.log(res);
-      return{body:JSON.stringify(res)};
+      return{body:res.data.donation_id};
     }
 
 export const main = handler( async (event, context) => {
