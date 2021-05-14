@@ -25,6 +25,7 @@ async function getAccessToken(code) {
 
 export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
+  try {
   const access = await getAccessToken(data.code);
   var params = {
     TableName: `customerTable`,
@@ -32,15 +33,12 @@ export const main = handler( async (event, context) => {
       "walletAddress":data.walletAddress
     },
     ExpressionAttributeValues:{
-      ":c1" : access.data.access_token,
-      ":c2": access.data.token_type,
-      ":c3": access.data.refresh_token
+      ":c1" : access.access_token,
+      ":c2": access.token_type,
+      ":c3": access.refresh_token
     },
     UpdateExpression:"set access_token = :c1, token_type = :c2, refresh_token = :c3"
-
   };
-
-  try {
     const result = await dynamoDb.update(params); // Return the matching list of items in response body
     return {code: true, result:result};
   } catch (e) {
