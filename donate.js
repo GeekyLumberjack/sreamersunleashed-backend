@@ -17,7 +17,7 @@ export const main = handler( async (event, context) => {
     },
     KeyConditionExpression: "walletAddress = :wa",
     ExpressionAttributeValues:{
-      ":wa" : data.walletAddress
+      ":wa" : JSON.stringify('{"address":"'+data.walletAddress+'"}')
     },
     ProjectionExpression:"access_token"
 
