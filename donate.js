@@ -13,11 +13,11 @@ export const main = handler( async (event, context) => {
   var params = {
     TableName: `customerTable`,
     Key:{
-      "walletAddress":JSON.stringify('{"address":"'+data.walletAddress+'"}')
+      "walletAddress":'{"address":"'+data.walletAddress+'"}'
     },
     KeyConditionExpression: "walletAddress = :wa",
     ExpressionAttributeValues:{
-      ":wa" : JSON.stringify('{"address":"'+data.walletAddress+'"}')
+      ":wa" : '{"address":"'+data.walletAddress+'"}'
     },
     ProjectionExpression:"access_token"
 
