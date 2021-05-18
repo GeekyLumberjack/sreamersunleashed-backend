@@ -1,6 +1,6 @@
 import dynamoDb from "./libs/dynamodb-lib";
 import handler from "./libs/handler-lib";
-import {Web3Service} from '@unlock-protocol/unlock-js';
+
 
 export const main = handler( async (event, context) => {
   const walletAddress = event['queryStringParameters']['walletAddress'];
