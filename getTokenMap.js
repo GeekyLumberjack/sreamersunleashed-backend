@@ -19,7 +19,7 @@ export const main = handler( async (event, context) => {
   try{
     const map = await dynamoDb.get(params);
     console.log(map);
-    return ({Map: true, Response: donate});
+    return ({Map: true, Response: map});
   } catch (e) {
     console.log(e);
     return { Map: false };
