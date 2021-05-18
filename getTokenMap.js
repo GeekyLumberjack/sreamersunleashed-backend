@@ -1,10 +1,10 @@
 import dynamoDb from "./libs/dynamodb-lib";
 import handler from "./libs/handler-lib";
-import {web3Service} from '@unlock-protocol/unlock-js';
+import {Web3Service} from '@unlock-protocol/unlock-js';
 
 async function enrich(map, address){
   for(var i=0; i<map.length; i++){
-    var getLockPrice = await web3Service.getTokenBalance(Object.values(map[i])[1], address, 100);
+    var getLockPrice = await Web3Service.getTokenBalance(Object.values(map[i])[1], address, 100);
     map[i]['price'] = getLockPrice;
   }
   return map;
