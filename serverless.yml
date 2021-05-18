@@ -57,6 +57,16 @@ functions:
           cors: true
           Auth:
             ApiKeyRequired: false
+  
+  getTokenMap:
+    handler: getTokenMap.main
+    events:
+      - http:
+          path: getTokenMap
+          method: get
+          cors: true
+          Auth:
+            ApiKeyRequired: false
   donate:
     handler: donate.main
     events:
