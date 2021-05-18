@@ -3,7 +3,7 @@ import handler from "./libs/handler-lib";
 
 
 export const main = handler( async (event, context) => {
-  const walletAddress = event['pathParameters']['walletAddress'];
+  const walletAddress = event['queryStringParameters']['walletAddress'];
   var params = {
     TableName: `customerTable`,
     Key:{
