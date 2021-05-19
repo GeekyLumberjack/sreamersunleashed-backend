@@ -3,9 +3,9 @@ import handler from "./libs/handler-lib";
 
 async function sendDonation(data, hasCode) {
       var axios = require("axios");
-      var dataPost = {'name':data.name,'identifier':data.name,'amount':data.amount,'currency':data.currency,'access_token':hasCode.Item.access_token}
+      var dataPost = {'name':data.name,'identifier':data.name,'amount':data.amount,'currency':data.currency,'access_token':hasCode.Item.access_token};
       if(data.message){
-        dataPost['message'] = data.message
+        dataPost['message'] = data.message;
       }
       const res = await axios.post('https://streamlabs.com/api/v1.0/donations', dataPost);
       console.log(res);
