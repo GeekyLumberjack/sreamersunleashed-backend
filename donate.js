@@ -14,6 +14,7 @@ async function sendDonation(data, hasCode) {
 
 export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
+  console.log(data);
   var params = {
     TableName: `customerTable`,
     Key:{
