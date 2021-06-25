@@ -29,7 +29,7 @@ export const main = handler( async (event, context) => {
   };
   try{
     const hasCode = await dynamoDb.get(params);
-    console.log(hasCode);
+    console.log(hasCode, params);
     const sendIt = await sendDonation(data, hasCode);
     return ({Donation: true, Response: sendIt});
   } catch (e) {
