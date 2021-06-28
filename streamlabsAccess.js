@@ -26,7 +26,7 @@ async function getAccessToken(code) {
 export const main = handler( async (event, context) => {
   const data = JSON.parse(event.body);
   try {
-    profileParams = {
+    const profileParams = {
       TableName: `customerTable`,
       Key:{
         "walletAddress":data.walletAddress
@@ -42,7 +42,6 @@ export const main = handler( async (event, context) => {
     if(hasCode.Item.access_token){
       return { code:true, hasCode:hasCode};
     }else{
-      
     const access = await getAccessToken(data.code);
     var params = {
       TableName: `customerTable`,
@@ -58,7 +57,7 @@ export const main = handler( async (event, context) => {
     };
       const result = await dynamoDb.update(params); // Return the matching list of items in response body
       return {code: true, result:result};
-  }} catch (e) {
+  } } catch (e) {
     if(e.code === 'ConditionalCheckFailedException'){
       return{ code: true};
     }
